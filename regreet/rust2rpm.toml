@@ -1,0 +1,14 @@
+[package]
+url = "https://github.com/rharish101/regreet"
+extra-files = ["%{_sysconfdir}/greetd/regreet.toml", "%{_prefix}/lib/tmpfiles.d/regreet.conf"]
+
+[scripts.install]
+post = [
+    "install -p -Dm0644 regreet.sample.toml %{buildroot}%{_sysconfdir}/greetd/regreet.toml",
+    "sed -i 's/greeter/greetd/g' systemd-tmpfiles.conf",
+    "install -p -Dm0644 systemd-tmpfiles.conf %{buildroot}%{_prefix}/lib/tmpfiles.d/regreet.conf"
+]
+
+[requires]
+build = ["pango-devel","cairo-gobject-devel", "gtk4-devel"]
+bin = ["pango", "gtk4", "libglvnd-gles", "accountsservice"]
