@@ -22,7 +22,7 @@ Requires:       python3-pyxdg
 Requires:       util-linux
 
 Recommends:     /usr/bin/notify-send
-Recommends:     /usr/bin/whiptail
+Recommends:     newt
 Recommends:     wofi
 
 %description
