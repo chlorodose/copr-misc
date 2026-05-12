@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+
+TAG="$(curl -fsSL https://api.github.com/repos/openzfs/zfs/releases | jq -r '.[0].name | sub("^zfs-"; "")')"
+sed -i "/^version := /c\version := ${TAG}" zfs/Makefile
+
+echo Please manually update maple-mono-font >&2
